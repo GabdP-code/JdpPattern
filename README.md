@@ -22,7 +22,7 @@
     maven { url 'https://jitpack.io' }
   }
   dependencies {
-     compile 'com.github.jamesdeperio:JDPPattern:2dca2169b6'
+     compile 'com.github.jamesdeperio:JdpPattern:4421e7aec1'
      compile 'com.jakewharton:butterknife:8.6.0'
      compile 'com.jakewharton:butterknife-compiler:8.6.0'
   }
