@@ -1,0 +1,10 @@
+package library.jdp.jdplib.service
+
+/**
+ * Created by jamesdeperio on 7/5/2017.
+ */
+
+internal interface RetrofitContract {
+    fun setCacheSize(): Int
+    fun setBaseURL(): String
+}
