@@ -5,12 +5,13 @@ import android.os.PersistableBundle
 import android.support.v7.widget.Toolbar
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import me.yokeyword.swipebackfragment.SwipeBackActivity
 
 /**
  * Created by jamesdeperio on 7/8/2017.
  */
 
-abstract class SwipeBackActivity : me.yokeyword.swipebackfragment.SwipeBackActivity() {
+abstract class SwipeBackBaseActivity : SwipeBackActivity() {
     private var unbinder: Unbinder? = null
     protected abstract fun initContentView(): Any
     protected abstract fun initSupportingActionBar(): Toolbar
