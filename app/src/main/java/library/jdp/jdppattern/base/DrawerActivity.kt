@@ -15,8 +15,8 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import library.jdp.jdplib.R
 import library.jdp.jdplib.util.FragmentUtil
+import library.jdp.jdppattern.R
 
 abstract class DrawerActivity : AppCompatActivity() {
     companion object {

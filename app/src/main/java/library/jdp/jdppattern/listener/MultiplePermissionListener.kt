@@ -19,18 +19,13 @@ package library.jdp.jdplib.listener
 import android.annotation.TargetApi
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Build
 import android.util.Log
-
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-
-import library.jdp.jdplib.R
+import library.jdp.jdppattern.R
 
 
 abstract class MultiplePermissionListener(private val activity: Activity) : MultiplePermissionsListener {

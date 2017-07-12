@@ -5,8 +5,8 @@ import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
-import library.jdp.jdplib.R
 import library.jdp.jdplib.base.DrawerFragment
+import library.jdp.jdppattern.R
 
 /**
  * Created by jamesdeperio on 1/26/2017.
