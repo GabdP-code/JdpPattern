@@ -5,9 +5,9 @@ import library.jdp.jdppattern.BuildConfig
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -46,12 +46,15 @@ abstract class RetrofitInstance : RetrofitContract {
         retrofit = Retrofit.Builder()
                 .baseUrl(setBaseURL())
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(converterFactory())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
         return retrofit.create(service)
     }
-     fun addHeader(key: String, value: String) {
+
+    abstract fun converterFactory(): Converter.Factory?
+
+    fun addHeader(key: String, value: String) {
         header.key.add(key)
         header.value.add(value)
     }
