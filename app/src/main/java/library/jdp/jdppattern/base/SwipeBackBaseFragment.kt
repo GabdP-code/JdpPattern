@@ -25,6 +25,8 @@ abstract class SwipeBackBaseFragment : SwipeBackFragment() {
         unbinder = ButterKnife.bind(this, rootView!!)
         initComponents()
         initServices()
+
+
         return attachToSwipeBack(rootView)
     }
     override fun onDestroyView() {
