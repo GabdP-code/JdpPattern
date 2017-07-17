@@ -65,6 +65,7 @@ abstract class DrawerActivity : AppCompatActivity() {
         }
     }
 
+    private var isDrawerOpen:Boolean = false
     private var unbinder: Unbinder? = null
     protected abstract fun initContentView(): Any
     protected abstract fun initSupportingActionBar(): Toolbar
@@ -102,7 +103,8 @@ abstract class DrawerActivity : AppCompatActivity() {
                 backToHome()
                 onBackPressed()
             }else{
-                if(initDrawerLayout().isDrawerOpen(Gravity.START)){
+                if(isDrawerOpen){
+                    isDrawerOpen=false
                     YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
                         override fun onAnimationCancel(animator: Animator) {}
@@ -114,6 +116,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                     }).playOn(navigationButton!!.get())
 
                 }else{
+                    isDrawerOpen=true
                     YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
                         override fun onAnimationCancel(animator: Animator) {}
