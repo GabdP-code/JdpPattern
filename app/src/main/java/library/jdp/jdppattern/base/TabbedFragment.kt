@@ -1,6 +1,7 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -66,6 +67,8 @@ abstract class TabbedFragment : Fragment(), ViewPager.OnPageChangeListener, TabL
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
     override fun onPageSelected(position: Int) {}
     override fun onPageScrollStateChanged(state: Int) {}
-
+    fun showDialog(intent: Intent){
+        activity.startActivity(intent)
+    }
 
 }

@@ -1,18 +1,19 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
 import android.support.v4.widget.DrawerLayout
+import java.lang.ref.WeakReference
 
 abstract class DetailFragment : SwipeBackBaseFragment() {
-    protected abstract val initDrawerLayout: DrawerLayout
+    protected abstract val initDrawerLayout: WeakReference<DrawerLayout>
     override fun onStart() {
         super.onStart()
         DrawerActivity.setAsDetailFragment()
-        initDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        initDrawerLayout.get()!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        initDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        initDrawerLayout.get()!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         DrawerActivity.backToHome()
     }
 }

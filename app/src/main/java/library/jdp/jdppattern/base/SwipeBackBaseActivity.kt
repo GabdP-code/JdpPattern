@@ -1,5 +1,6 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.widget.Toolbar
@@ -30,7 +31,9 @@ abstract class SwipeBackBaseActivity : SwipeBackActivity() {
         unbinder!!.unbind()
         super.onDestroy()
     }
-
+    fun showDialog(intent: Intent){
+        startActivity(intent)
+    }
 }
 
 

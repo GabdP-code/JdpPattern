@@ -1,5 +1,6 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ abstract class BaseFragment : Fragment() {
         unbinder=null
         super.onDestroyView()
     }
-
-
+    fun showDialog(intent: Intent){
+        activity.startActivity(intent)
+    }
 }

@@ -1,5 +1,6 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,5 +33,8 @@ abstract class SwipeBackBaseFragment : SwipeBackFragment() {
     override fun onDestroyView() {
         unbinder!!.unbind()
         super.onDestroyView()
+    }
+    fun showDialog(intent: Intent){
+        activity.startActivity(intent)
     }
 }

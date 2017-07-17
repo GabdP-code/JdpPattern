@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package library.jdp.jdplib.listener
+package library.jdp.jdppattern.listener
 
 import android.annotation.TargetApi
 import android.app.Activity

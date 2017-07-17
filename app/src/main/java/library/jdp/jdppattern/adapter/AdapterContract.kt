@@ -1,4 +1,4 @@
-package library.jdp.jdplib.adapter
+package library.jdp.jdppattern.adapter
 
 /**
  * Created by jamesdeperio on 7/7/2017.

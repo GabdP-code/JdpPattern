@@ -1,4 +1,4 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

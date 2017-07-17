@@ -1,10 +1,11 @@
-package library.jdp.jdplib.service
+package library.jdp.jdppattern.service
 
 import android.content.Context
 import library.jdp.jdppattern.BuildConfig
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.jetbrains.annotations.NotNull
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -14,8 +15,8 @@ import java.util.concurrent.TimeUnit
  * Created by jamesdeperio on 6/20/2017.
  */
 
-abstract class RetrofitInstance : RetrofitContract {
-
+abstract class RetrofitService : RetrofitContract {
+@NotNull
     private lateinit var retrofit: Retrofit
     internal var header: RetrofitHeaderInterceptor = RetrofitHeaderInterceptor()
 
@@ -24,7 +25,7 @@ abstract class RetrofitInstance : RetrofitContract {
         val okHttpClient: OkHttpClient
         val cache = Cache(context.cacheDir, cacheSize.toLong())
         if (BuildConfig.DEBUG) {
-            val logging = HttpLoggingInterceptor()
+                val logging = HttpLoggingInterceptor()
             okHttpClient = OkHttpClient.Builder()
                     .cache(cache)
                     .writeTimeout(10, TimeUnit.SECONDS)

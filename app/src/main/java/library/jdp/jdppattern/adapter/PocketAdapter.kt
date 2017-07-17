@@ -1,4 +1,4 @@
-package library.jdp.jdplib.adapter
+package library.jdp.jdppattern.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,11 +10,19 @@ import android.view.ViewGroup
  */
 
 abstract class PocketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), AdapterContract {
-    protected val TYPE_HEADER: Byte = 0
-    protected val TYPE_FOOTER: Byte = 1
-    protected val TYPE_ITEM_SIMPLE: Byte = 2
-    protected val TYPE_ITEM_IMAGE: Byte = 3
-    protected val TYPE_ITEM_VIDEO: Byte = 4
+    companion object {
+        private class HeaderLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
+        private class FooterLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
+        private class SimpleItemLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
+        private class ItemImageLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
+        private class ItemVideoLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    }
+    private val TYPE_HEADER: Byte = 0
+    private val TYPE_FOOTER: Byte = 1
+    private val TYPE_ITEM_SIMPLE: Byte = 2
+    private val TYPE_ITEM_IMAGE: Byte = 3
+    private val TYPE_ITEM_VIDEO: Byte = 4
 
     protected var layoutHeader: Int = 0
     protected var layoutFooter: Int = 0
@@ -84,9 +92,4 @@ abstract class PocketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), 
         return dataCount
     }
 
-    internal inner class HeaderLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
-    internal inner class FooterLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
-    internal inner class SimpleItemLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
-    internal inner class ItemImageLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
-    internal inner class ItemVideoLayout(itemView: View) : RecyclerView.ViewHolder(itemView)
-}
+    }

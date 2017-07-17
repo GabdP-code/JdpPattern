@@ -1,6 +1,7 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
 import android.animation.Animator
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -15,13 +16,13 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import library.jdp.jdplib.util.FragmentUtil
 import library.jdp.jdppattern.R
+import library.jdp.jdppattern.util.FragmentChange
+import java.lang.ref.WeakReference
 
 abstract class DrawerActivity : AppCompatActivity() {
     companion object {
-        private var toggle: ActionBarDrawerToggle? = null
-        private var navigationButton: View? = null
+        private var navigationButton: WeakReference<View>? = null
         private var actionbar: ActionBar? = null
         private var isDetailedPage = false
 
@@ -37,7 +38,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                             actionbar!!.setHomeAsUpIndicator(initMenuIcon())
                         }
                     })
-                    .playOn(navigationButton)
+                    .playOn(navigationButton!!.get())
         }
 
 
@@ -52,7 +53,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                     actionbar!!.setHomeAsUpIndicator(initBackIcon())
                     isDetailedPage = true
                 }
-            }).playOn(navigationButton)
+            }).playOn(navigationButton!!.get())
 
         }
 
@@ -76,7 +77,7 @@ abstract class DrawerActivity : AppCompatActivity() {
     private fun setDrawerLayout() {
         val drawerFragment: DrawerFragment? = initDrawerFragment()
         drawerFragment!!.drawerLayout = initDrawerLayout()
-        FragmentUtil.loadFragment(Integer.parseInt(initDrawerFragmentID().toString()),supportFragmentManager,drawerFragment)
+        FragmentChange.load(Integer.parseInt(initDrawerFragmentID().toString()),supportFragmentManager,drawerFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,19 +86,19 @@ abstract class DrawerActivity : AppCompatActivity() {
         unbinder = ButterKnife.bind(this)
         setSupportActionBar(initSupportingActionBar())
         actionbar = supportActionBar
-        toggle = ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
                 this, initDrawerLayout(), initSupportingActionBar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         initDrawerLayout().setDrawerListener(toggle)
-        toggle!!.syncState()
+        toggle.syncState()
         setDrawerLayout()
         initComponents()
         initServices()
-        navigationButton = initSupportingActionBar().getChildAt(1)
+        navigationButton = WeakReference<View>(initSupportingActionBar().getChildAt(1))
         actionbar!!.setDisplayHomeAsUpEnabled(true)
         actionbar!!.setHomeButtonEnabled(true)
-        actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
-        navigationButton!!.setBackgroundColor(Color.TRANSPARENT)
-        navigationButton!!.setOnClickListener {
+        actionbar!!.setHomeAsUpIndicator(initMenuIcon())
+        navigationButton!!.get()!!.setBackgroundColor(Color.TRANSPARENT)
+        navigationButton!!.get()!!.setOnClickListener {
             if(isDetailedPage){
                 backToHome()
                 onBackPressed()
@@ -109,7 +110,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                     override fun onAnimationEnd(animator: Animator) {
                         initDrawerLayout().openDrawer(Gravity.START)
                     }
-                }).playOn(navigationButton)
+                }).playOn(navigationButton!!.get())
 
             }
 
@@ -127,7 +128,7 @@ abstract class DrawerActivity : AppCompatActivity() {
             initDrawerLayout().closeDrawer(GravityCompat.START)
         else super.onBackPressed()
     }
-
-
-
+    fun showDialog(intent: Intent){
+        startActivity(intent)
+    }
 }

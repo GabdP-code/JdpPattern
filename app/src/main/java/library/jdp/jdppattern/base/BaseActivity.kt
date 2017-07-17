@@ -1,5 +1,6 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -32,4 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    fun showDialog(intent:Intent){
+        startActivity(intent)
+    }
 }

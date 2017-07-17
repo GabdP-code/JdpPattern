@@ -1,11 +1,9 @@
-package library.jdp.jdplib.service
-
-import java.io.IOException
-import java.util.ArrayList
+package library.jdp.jdppattern.service
 
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
+import java.util.*
 
 /**
  * Created by jamesdeperio on 7/5/2017.

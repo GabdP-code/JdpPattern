@@ -1,5 +1,6 @@
-package library.jdp.jdplib.base
+package library.jdp.jdppattern.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -93,6 +94,9 @@ abstract class SwipeBackTabbedFragment : SwipeBackFragment(), ViewPager.OnPageCh
             }
             return null
         }
+    }
+    fun showDialog(intent: Intent){
+        activity.startActivity(intent)
     }
 }
 

@@ -1,4 +1,4 @@
-package library.jdp.jdplib.service
+package library.jdp.jdppattern.service
 
 /**
  * Created by jamesdeperio on 7/5/2017.
