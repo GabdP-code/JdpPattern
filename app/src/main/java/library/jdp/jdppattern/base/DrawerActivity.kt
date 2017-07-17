@@ -107,12 +107,6 @@ abstract class DrawerActivity : AppCompatActivity() {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
                         }
                     }).playOn(navigationButton!!.get())
-
-
-                } else if (slideOffset != 0f && actionBar!!.navigationMode == ActionBar.NAVIGATION_MODE_TABS) {
-                    // started opening
-                    actionBar!!.navigationMode = ActionBar.NAVIGATION_MODE_STANDARD
-                    invalidateOptionsMenu()
                 }
                 super.onDrawerSlide(drawerView, slideOffset)
             }
