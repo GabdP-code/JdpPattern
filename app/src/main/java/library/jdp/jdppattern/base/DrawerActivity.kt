@@ -143,7 +143,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                 initDrawerLayout().openDrawer(Gravity.START)
             }else if(isDrawerOpen){
                 isDrawerOpen=false
-                initDrawerLayout().openDrawer(Gravity.START)
+                initDrawerLayout().closeDrawer(Gravity.START)
             }
         }
     }
