@@ -110,12 +110,13 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationCancel(animator: Animator) {}
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
-                            initDrawerLayout().closeDrawer(Gravity.START)
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
-                        }
+                            initDrawerLayout().closeDrawer(Gravity.START)
+                           }
                     }).playOn(navigationButton!!.get())
 
-                }else{
+                }
+                else{
                     isDrawerOpen=true
                     YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
