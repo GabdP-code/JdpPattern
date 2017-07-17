@@ -96,8 +96,8 @@ abstract class DrawerActivity : AppCompatActivity() {
             override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
                 if (slideOffset == 0f && Companion.actionbar!!.navigationMode == ActionBar.NAVIGATION_MODE_STANDARD) {
                     // drawer closed
-                    Companion.actionbar!!.navigationMode = ActionBar.NAVIGATION_MODE_TABS
-                    invalidateOptionsMenu()
+                   // Companion.actionbar!!.navigationMode = ActionBar.NAVIGATION_MODE_TABS
+                 //   invalidateOptionsMenu()
                     isDrawerOpen=false
                     YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
