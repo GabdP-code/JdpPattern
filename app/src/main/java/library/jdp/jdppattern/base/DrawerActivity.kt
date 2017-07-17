@@ -99,12 +99,13 @@ abstract class DrawerActivity : AppCompatActivity() {
                    // Companion.actionbar!!.navigationMode = ActionBar.NAVIGATION_MODE_TABS
                  //   invalidateOptionsMenu()
                     isDrawerOpen=false
-                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
-                        override fun onAnimationStart(animator: Animator) {}
+                    YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                        }
                         override fun onAnimationCancel(animator: Animator) {}
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
-                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
                         }
                     }).playOn(navigationButton!!.get())
                 }
@@ -128,13 +129,15 @@ abstract class DrawerActivity : AppCompatActivity() {
                 onBackPressed()
             }else if(!isDrawerOpen){
                     isDrawerOpen=true
-                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
-                        override fun onAnimationStart(animator: Animator) {}
+                    YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
+                            initDrawerLayout().openDrawer(Gravity.START)
+
+                        }
                         override fun onAnimationCancel(animator: Animator) {}
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
-                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
-                            initDrawerLayout().openDrawer(Gravity.START)
                         }
                     }).playOn(navigationButton!!.get())
                 }
