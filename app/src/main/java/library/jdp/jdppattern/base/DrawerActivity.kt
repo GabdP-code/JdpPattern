@@ -102,6 +102,8 @@ abstract class DrawerActivity : AppCompatActivity() {
                     YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                            initDrawerLayout().closeDrawer(Gravity.START)
+
                         }
                         override fun onAnimationCancel(animator: Animator) {}
                         override fun onAnimationRepeat(animator: Animator) {}
@@ -109,8 +111,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                         }
                     }).playOn(navigationButton!!.get())
                 }
-                super.onDrawerSlide(drawerView, slideOffset)
-            }
+               }
         }
 
         initDrawerLayout().setDrawerListener(toggle)
