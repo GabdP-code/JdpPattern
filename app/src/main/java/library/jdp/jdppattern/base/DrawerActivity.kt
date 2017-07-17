@@ -110,7 +110,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationEnd(animator: Animator) {
                         }
                     }).playOn(navigationButton!!.get())
-                }else if (slideOffset !=0f && Companion.actionbar!!.navigationMode == ActionBar.NAVIGATION_MODE_TABS) {
+                }else {
                     // started opening
                     isDrawerOpen=true
                     YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
@@ -144,7 +144,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                 backToHome()
                 onBackPressed()
             }else if(!isDrawerOpen) {
-                initDrawerLayout().closeDrawer(Gravity.START)
+                initDrawerLayout().openDrawer(Gravity.START)
             }
         }
 
