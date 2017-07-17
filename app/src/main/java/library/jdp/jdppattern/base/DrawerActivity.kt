@@ -73,7 +73,6 @@ abstract class DrawerActivity : AppCompatActivity() {
     protected abstract fun initDrawerFragment(): DrawerFragment
     protected abstract fun initComponents()
     protected abstract fun initServices()
-
     private fun setDrawerLayout() {
         val drawerFragment: DrawerFragment? = initDrawerFragment()
         drawerFragment!!.drawerLayout = initDrawerLayout()
@@ -103,14 +102,29 @@ abstract class DrawerActivity : AppCompatActivity() {
                 backToHome()
                 onBackPressed()
             }else{
-                YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {}
-                    override fun onAnimationCancel(animator: Animator) {}
-                    override fun onAnimationRepeat(animator: Animator) {}
-                    override fun onAnimationEnd(animator: Animator) {
-                        initDrawerLayout().openDrawer(Gravity.START)
-                    }
-                }).playOn(navigationButton!!.get())
+                if(initDrawerLayout().isDrawerOpen(Gravity.START)){
+                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationRepeat(animator: Animator) {}
+                        override fun onAnimationEnd(animator: Animator) {
+                            initDrawerLayout().closeDrawer(Gravity.START)
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                        }
+                    }).playOn(navigationButton!!.get())
+
+                }else{
+                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationRepeat(animator: Animator) {}
+                        override fun onAnimationEnd(animator: Animator) {
+                            initDrawerLayout().openDrawer(Gravity.START)
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
+                        }
+                    }).playOn(navigationButton!!.get())
+
+                }
 
             }
 
