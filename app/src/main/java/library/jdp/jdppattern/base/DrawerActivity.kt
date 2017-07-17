@@ -99,7 +99,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                 if (slideOffset == 0f && Companion.actionbar!!.navigationMode == ActionBar.NAVIGATION_MODE_STANDARD) {
                     // drawer closed
                     isDrawerOpen=false
-                    YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                    YoYo.with(Techniques.RotateIn).duration(300).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
                         }
@@ -110,10 +110,10 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationEnd(animator: Animator) {
                         }
                     }).playOn(navigationButton!!.get())
-                }else {
+                }else if(!initDrawerLayout().isDrawerOpen(Gravity.START)) {
                     // started opening
                     isDrawerOpen=true
-                    YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                    YoYo.with(Techniques.RotateIn).duration(300).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
                         }
