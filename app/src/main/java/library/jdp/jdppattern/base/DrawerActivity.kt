@@ -65,7 +65,7 @@ abstract class DrawerActivity : AppCompatActivity() {
         }
     }
 
-    private var isDrawerOpen:Boolean = false
+    private var isDrawerOpen = false
     private var unbinder: Unbinder? = null
     protected abstract fun initContentView(): Any
     protected abstract fun initSupportingActionBar(): Toolbar
@@ -114,7 +114,6 @@ abstract class DrawerActivity : AppCompatActivity() {
                             initDrawerLayout().closeDrawer(Gravity.START)
                            }
                     }).playOn(navigationButton!!.get())
-
                 }
                 else{
                     isDrawerOpen=true
@@ -123,11 +122,10 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationCancel(animator: Animator) {}
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
-                            initDrawerLayout().openDrawer(Gravity.START)
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
+                            initDrawerLayout().openDrawer(Gravity.START)
                         }
                     }).playOn(navigationButton!!.get())
-
                 }
 
             }
