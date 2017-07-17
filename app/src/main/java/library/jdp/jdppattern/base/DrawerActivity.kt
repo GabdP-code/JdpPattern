@@ -20,6 +20,8 @@ import library.jdp.jdppattern.R
 import library.jdp.jdppattern.util.FragmentChange
 import java.lang.ref.WeakReference
 
+
+
 abstract class DrawerActivity : AppCompatActivity() {
     companion object {
         private var navigationButton: WeakReference<View>? = null
@@ -140,12 +142,33 @@ abstract class DrawerActivity : AppCompatActivity() {
                 onBackPressed()
             }else if(!isDrawerOpen){
                 isDrawerOpen=true
-                initDrawerLayout().openDrawer(Gravity.START)
-            }else if(isDrawerOpen){
+                YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animator: Animator) {
+                        Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
+                        initDrawerLayout().openDrawer(Gravity.START)
+                    }
+                    override fun onAnimationCancel(animator: Animator) {}
+                    override fun onAnimationRepeat(animator: Animator) {}
+                    override fun onAnimationEnd(animator: Animator) {
+                    }
+                }).playOn(navigationButton!!.get())
+            }else {
                 isDrawerOpen=false
                 initDrawerLayout().closeDrawer(Gravity.START)
+                YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animator: Animator) {
+                        Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                        initDrawerLayout().closeDrawer(Gravity.START)
+                    }
+                    override fun onAnimationCancel(animator: Animator) {}
+                    override fun onAnimationRepeat(animator: Animator) {}
+                    override fun onAnimationEnd(animator: Animator) {
+                    }
+                }).playOn(navigationButton!!.get())
+
             }
         }
+
     }
 
     override fun onDestroy() {
