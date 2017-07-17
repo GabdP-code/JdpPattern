@@ -86,8 +86,38 @@ abstract class DrawerActivity : AppCompatActivity() {
         unbinder = ButterKnife.bind(this)
         setSupportActionBar(initSupportingActionBar())
         actionbar = supportActionBar
-        val toggle = ActionBarDrawerToggle(
-                this, initDrawerLayout(), initSupportingActionBar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle =object : ActionBarDrawerToggle(
+                this,
+                initDrawerLayout(),
+                initSupportingActionBar(),
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        ) {
+            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+                if (slideOffset == 0f && actionBar!!.navigationMode == ActionBar.NAVIGATION_MODE_STANDARD) {
+                    // drawer closed
+                    actionBar!!.navigationMode = ActionBar.NAVIGATION_MODE_TABS
+                    invalidateOptionsMenu()
+                    isDrawerOpen=false
+                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationRepeat(animator: Animator) {}
+                        override fun onAnimationEnd(animator: Animator) {
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                        }
+                    }).playOn(navigationButton!!.get())
+
+
+                } else if (slideOffset != 0f && actionBar!!.navigationMode == ActionBar.NAVIGATION_MODE_TABS) {
+                    // started opening
+                    actionBar!!.navigationMode = ActionBar.NAVIGATION_MODE_STANDARD
+                    invalidateOptionsMenu()
+                }
+                super.onDrawerSlide(drawerView, slideOffset)
+            }
+        }
+
         initDrawerLayout().setDrawerListener(toggle)
         toggle.syncState()
         setDrawerLayout()
@@ -102,20 +132,7 @@ abstract class DrawerActivity : AppCompatActivity() {
             if(isDetailedPage){
                 backToHome()
                 onBackPressed()
-            }else{
-                if(isDrawerOpen){
-                    isDrawerOpen=false
-                    YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
-                        override fun onAnimationStart(animator: Animator) {}
-                        override fun onAnimationCancel(animator: Animator) {}
-                        override fun onAnimationRepeat(animator: Animator) {}
-                        override fun onAnimationEnd(animator: Animator) {
-                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
-                            initDrawerLayout().closeDrawer(Gravity.START)
-                           }
-                    }).playOn(navigationButton!!.get())
-                }
-                else{
+            }else if(!isDrawerOpen){
                     isDrawerOpen=true
                     YoYo.with(Techniques.RotateIn).duration(200).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
@@ -127,9 +144,6 @@ abstract class DrawerActivity : AppCompatActivity() {
                         }
                     }).playOn(navigationButton!!.get())
                 }
-
-            }
-
         }
     }
 
