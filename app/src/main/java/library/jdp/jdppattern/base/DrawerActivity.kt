@@ -103,7 +103,9 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationStart(animator: Animator) {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
                         }
-                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
+                        }
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
                         }
@@ -114,9 +116,10 @@ abstract class DrawerActivity : AppCompatActivity() {
                     YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {
                             Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
-
                         }
-                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {
+                            Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
+                        }
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
                         }
@@ -140,32 +143,8 @@ abstract class DrawerActivity : AppCompatActivity() {
             if(isDetailedPage){
                 backToHome()
                 onBackPressed()
-            }else if(!isDrawerOpen){
-                isDrawerOpen=true
-                YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {
-                        Companion.actionbar!!.setHomeAsUpIndicator(Companion.initBackIcon())
-                        initDrawerLayout().openDrawer(Gravity.START)
-                    }
-                    override fun onAnimationCancel(animator: Animator) {}
-                    override fun onAnimationRepeat(animator: Animator) {}
-                    override fun onAnimationEnd(animator: Animator) {
-                    }
-                }).playOn(navigationButton!!.get())
-            }else {
-                isDrawerOpen=false
+            }else if(!isDrawerOpen) {
                 initDrawerLayout().closeDrawer(Gravity.START)
-                YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {
-                        Companion.actionbar!!.setHomeAsUpIndicator(Companion.initMenuIcon())
-                        initDrawerLayout().closeDrawer(Gravity.START)
-                    }
-                    override fun onAnimationCancel(animator: Animator) {}
-                    override fun onAnimationRepeat(animator: Animator) {}
-                    override fun onAnimationEnd(animator: Animator) {
-                    }
-                }).playOn(navigationButton!!.get())
-
             }
         }
 
