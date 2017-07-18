@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference
 object FragmentChange {
     fun load(layoutID: Int, fragmentManager: FragmentManager, fragment: Fragment) {
         fragmentManager.beginTransaction()
-                .add(layoutID, fragment, fragment.javaClass.simpleName)
+                .replace(layoutID, fragment, fragment.javaClass.simpleName)
                 .disallowAddToBackStack()
                 .commitAllowingStateLoss()
     }
