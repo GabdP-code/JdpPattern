@@ -159,8 +159,8 @@ abstract class DrawerActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        unbinder!!.unbind()
         super.onDestroy()
+        unbinder!!.unbind()
     }
 
 

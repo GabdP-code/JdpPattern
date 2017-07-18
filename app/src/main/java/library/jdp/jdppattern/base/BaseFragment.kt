@@ -27,9 +27,8 @@ abstract class BaseFragment : Fragment() {
         return rootView
     }
     override fun onDestroyView() {
-        unbinder!!.unbind()
-        unbinder=null
         super.onDestroyView()
+        unbinder!!.unbind()
     }
     fun showDialog(intent: Intent){
         activity.startActivity(intent)

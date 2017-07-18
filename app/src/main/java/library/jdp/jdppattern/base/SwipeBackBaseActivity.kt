@@ -28,8 +28,8 @@ abstract class SwipeBackBaseActivity : SwipeBackActivity() {
     }
 
     override fun onDestroy() {
-        unbinder!!.unbind()
         super.onDestroy()
+        unbinder!!.unbind()
     }
     fun showDialog(intent: Intent){
         startActivity(intent)

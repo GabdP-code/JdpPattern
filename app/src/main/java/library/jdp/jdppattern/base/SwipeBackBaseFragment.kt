@@ -31,8 +31,8 @@ abstract class SwipeBackBaseFragment : SwipeBackFragment() {
         return attachToSwipeBack(rootView)
     }
     override fun onDestroyView() {
-        unbinder!!.unbind()
         super.onDestroyView()
+        unbinder!!.unbind()
     }
     fun showDialog(intent: Intent){
         activity.startActivity(intent)

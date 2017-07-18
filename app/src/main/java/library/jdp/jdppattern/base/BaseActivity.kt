@@ -28,9 +28,8 @@ abstract class BaseActivity : AppCompatActivity() {
         initServices()
     }
     override fun onDestroy() {
-        unbinder!!.unbind()
-        unbinder=null
         super.onDestroy()
+        unbinder!!.unbind()
     }
 
     fun showDialog(intent:Intent){

@@ -56,15 +56,8 @@ abstract class SwipeBackTabbedFragment : SwipeBackFragment(), ViewPager.OnPageCh
     }
 
     override fun onDestroyView() {
-        viewPager=null
-        //pocketViewPagerAdapter=null
-        titleList!!.clear()
-        fragmentList!!.clear()
-        titleList=null
-        fragmentList=null
-        unbinder!!.unbind()
-        unbinder=null
         super.onDestroyView()
+        unbinder!!.unbind()
     }
 
     override fun onTabSelected(tab: TabLayout.Tab) {}
