@@ -33,7 +33,10 @@ abstract class DrawerActivity : AppCompatActivity() {
                     .duration(500)
                     .withListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animator: Animator) {}
-                        override fun onAnimationCancel(animator: Animator) {}
+                        override fun onAnimationCancel(animator: Animator) {
+                            isDetailedPage = false
+                            actionbar!!.setHomeAsUpIndicator(initMenuIcon())
+                        }
                         override fun onAnimationRepeat(animator: Animator) {}
                         override fun onAnimationEnd(animator: Animator) {
                             isDetailedPage = false
@@ -47,7 +50,12 @@ abstract class DrawerActivity : AppCompatActivity() {
         fun setAsDetailFragment() {
             YoYo.with(Techniques.RotateIn).duration(500).withListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animator: Animator) {}
-                override fun onAnimationCancel(animator: Animator) {}
+                override fun onAnimationCancel(animator: Animator) {
+                    actionbar!!.setDisplayHomeAsUpEnabled(true)
+                    actionbar!!.setHomeButtonEnabled(true)
+                    actionbar!!.setHomeAsUpIndicator(initBackIcon())
+                    isDetailedPage = true
+                }
                 override fun onAnimationRepeat(animator: Animator) {}
                 override fun onAnimationEnd(animator: Animator) {
                     actionbar!!.setDisplayHomeAsUpEnabled(true)
@@ -96,7 +104,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                 R.string.navigation_drawer_close
         ) {
             override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
-                if (slideOffset == 0f && Companion.actionbar!!.navigationMode == ActionBar.NAVIGATION_MODE_STANDARD) {
+                if (slideOffset == 0f ) {
                     // drawer closed
                     isDrawerOpen=false
                     YoYo.with(Techniques.RotateIn).duration(300).withListener(object : Animator.AnimatorListener {
@@ -110,7 +118,7 @@ abstract class DrawerActivity : AppCompatActivity() {
                         override fun onAnimationEnd(animator: Animator) {
                         }
                     }).playOn(navigationButton!!.get())
-                }else if(!initDrawerLayout().isDrawerOpen(Gravity.START)) {
+                }else if(1f==slideOffset) {
                     // started opening
                     isDrawerOpen=true
                     YoYo.with(Techniques.RotateIn).duration(300).withListener(object : Animator.AnimatorListener {
