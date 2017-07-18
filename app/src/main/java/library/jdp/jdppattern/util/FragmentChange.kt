@@ -16,7 +16,7 @@ object FragmentChange {
         fragmentManager.beginTransaction()
                 .add(layoutID, fragment, fragment.javaClass.simpleName)
                 .disallowAddToBackStack()
-                .commit()
+                .commitAllowingStateLoss()
     }
 
     fun unLoad(view: WeakReference<View>, fragmentManager: FragmentManager, fragment: Fragment) {
@@ -25,7 +25,7 @@ object FragmentChange {
             CleanView.clearMemory(view)
             fragmentManager.beginTransaction()
                     .remove(fragment)
-                    .commit()
+                    .commitAllowingStateLoss()
             handler = null
         }, 1000)
     }
@@ -35,7 +35,7 @@ object FragmentChange {
         handler!!.postDelayed({
             fragmentManager.beginTransaction()
                     .remove(fragment)
-                    .commit()
+                    .commitAllowingStateLoss()
             handler = null
         }, 1000)
         }
@@ -46,7 +46,7 @@ object FragmentChange {
                 .add(layoutID, toFragment, toFragment.javaClass.simpleName)
                 .hide(fromFragment)
                 .addToBackStack(toFragment.javaClass.simpleName)
-                .commit()
+                .commitAllowingStateLoss()
     }
 }
 
