@@ -32,7 +32,6 @@ abstract class TabbedFragment : Fragment(), ViewPager.OnPageChangeListener, TabL
     protected abstract fun initPageTransformer(): ViewPager.PageTransformer?
     protected abstract fun initComponents()
     protected abstract fun initServices()
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater!!.inflate(Integer.parseInt(initContentView().toString()), container, false)
         unbinder=ButterKnife.bind(this,rootView!!)
