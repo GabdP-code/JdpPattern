@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.ButterKnife
 import butterknife.Unbinder
 import me.yokeyword.swipebackfragment.SwipeBackFragment
 import java.util.*
@@ -40,6 +41,7 @@ abstract class SwipeBackTabbedFragment : SwipeBackFragment(), ViewPager.OnPageCh
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater!!.inflate(Integer.parseInt(initContentView().toString()), container, false)
+        unbinder= ButterKnife.bind(this,rootView!!)
         titleList = ArrayList<String>()
         fragmentList = ArrayList<Fragment>()
         initPages()

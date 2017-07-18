@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.ButterKnife
 import butterknife.Unbinder
 import java.util.*
 
@@ -34,6 +35,7 @@ abstract class TabbedFragment : Fragment(), ViewPager.OnPageChangeListener, TabL
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater!!.inflate(Integer.parseInt(initContentView().toString()), container, false)
+        unbinder=ButterKnife.bind(this,rootView!!)
         titleList = ArrayList<String>()
         fragmentList = ArrayList<Fragment>()
         initPages()
