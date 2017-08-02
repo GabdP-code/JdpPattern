@@ -56,17 +56,17 @@ abstract class RetrofitService : RetrofitContract {
     abstract fun converterFactory(): Converter.Factory?
 
   
-    fun Long initConnectTimeout()Int? {
+    public fun initConnectTimeout()Int? {
         return 30;
     }
 
   
-    fun Long initReadTimeout():Int? {
+    public fun initReadTimeout():Int? {
         return 30;
     }
 
   
-    public initWriteTimeout():Int? {
+    public fun initWriteTimeout():Int? {
         return 30;
     }
     fun addHeader(key: String, value: String) {
