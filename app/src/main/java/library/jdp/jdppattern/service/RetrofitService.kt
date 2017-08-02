@@ -55,6 +55,20 @@ abstract class RetrofitService : RetrofitContract {
 
     abstract fun converterFactory(): Converter.Factory?
 
+  
+    fun Long initConnectTimeout() {
+        return 30;
+    }
+
+  
+    fun Long initReadTimeout() {
+        return 30;
+    }
+
+  
+    public Long initWriteTimeout() {
+        return 30;
+    }
     fun addHeader(key: String, value: String) {
         header.key.add(key)
         header.value.add(value)
