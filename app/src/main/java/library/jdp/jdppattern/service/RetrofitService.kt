@@ -20,7 +20,7 @@ abstract class RetrofitService : RetrofitContract {
     private lateinit var retrofit: Retrofit
     internal var header: RetrofitHeaderInterceptor = RetrofitHeaderInterceptor()
 
-    protected fun initialize(context: Context, service: Class<*>): Any? {
+    public fun initialize(context: Context, service: Class<*>): Any? {
         val cacheSize = setCacheSize() * 1024 * 1024
         val okHttpClient: OkHttpClient
         val cache = Cache(context.cacheDir, cacheSize.toLong())
@@ -28,9 +28,9 @@ abstract class RetrofitService : RetrofitContract {
                 val logging = HttpLoggingInterceptor()
             okHttpClient = OkHttpClient.Builder()
                     .cache(cache)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(initWriteTimeout(), TimeUnit.SECONDS)
+                    .connectTimeout(initConnectTimeout(), TimeUnit.SECONDS)
+                    .readTimeout(initReadTimeout(), TimeUnit.SECONDS)
                     .addInterceptor(logging)
                     .addInterceptor(header)
                     .build()
@@ -38,9 +38,9 @@ abstract class RetrofitService : RetrofitContract {
         else {
             okHttpClient = OkHttpClient.Builder()
                     .cache(cache)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(initWriteTimeout(), TimeUnit.SECONDS)
+                    .connectTimeout(initConnectTimeout(), TimeUnit.SECONDS)
+                    .readTimeout(initReadTimeout(), TimeUnit.SECONDS)
                     .addInterceptor(header)
                     .build()
         }
@@ -56,17 +56,17 @@ abstract class RetrofitService : RetrofitContract {
     abstract fun converterFactory(): Converter.Factory?
 
   
-    fun Long initConnectTimeout() {
+    fun Long initConnectTimeout()Int? {
         return 30;
     }
 
   
-    fun Long initReadTimeout() {
+    fun Long initReadTimeout():Int? {
         return 30;
     }
 
   
-    public Long initWriteTimeout() {
+    public initWriteTimeout():Int? {
         return 30;
     }
     fun addHeader(key: String, value: String) {
