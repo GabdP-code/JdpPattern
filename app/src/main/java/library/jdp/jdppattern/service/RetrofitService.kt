@@ -54,20 +54,21 @@ abstract class RetrofitService : RetrofitContract {
     }
 
     abstract fun converterFactory(): Converter.Factory?
+abstract fun setCacheSize(): Int?
 
   
-    public fun initConnectTimeout()Int? {
-        return 30;
+    public fun initConnectTimeout():Int {
+        return 30
     }
 
   
-    public fun initReadTimeout():Int? {
-        return 30;
+    public fun initReadTimeout():Int {
+        return 30
     }
 
   
-    public fun initWriteTimeout():Int? {
-        return 30;
+    public fun initWriteTimeout():Int {
+        return 30
     }
     fun addHeader(key: String, value: String) {
         header.key.add(key)
